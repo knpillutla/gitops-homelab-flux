@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dashy
+  labels:
+    app.kubernetes.io/name: dashy
+  annotations:
+    kubernetes.io/namespace: dashy
+    

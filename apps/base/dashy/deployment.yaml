@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: dashy
+  name: dashy-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: dashy
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: dashy
+    spec:
+      containers:
+        - image: lissy93/dashy
+          name: dashy
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: dashy-data
+              mountPath: /app/user-data
+      volumes:
+        - name: dashy-data
+          persistentVolumeClaim:
+                claimName: dashy-data-pvc
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1

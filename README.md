@@ -1,2 +1,1 @@
-# gitops-homelab-flux
-gitops with flux
+Repo for home lab for gitops on local k8s cluster on vagrant
